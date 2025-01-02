@@ -1,0 +1,277 @@
+
+
+#!/bin/bash
+
+# ---------------------------
+# Update the package list
+# ---------------------------
+echo "Updating package list..."
+sudo apt update
+
+# ---------------------------
+# Install Wireshark
+# ---------------------------
+echo "Installing Wireshark..."
+sudo apt install -y wireshark
+
+# ---------------------------
+# Configure Wireshark for Non-Root Users
+# ---------------------------
+echo "Configuring Wireshark to allow non-root users to capture packets..."
+sudo dpkg-reconfigure wireshark-common
+sudo usermod -aG wireshark $USER
+
+# ---------------------------
+# Usage Instructions for Wireshark
+# ---------------------------
+echo -e "\n### Wireshark Commands and Usages ###"
+echo "1. Start Wireshark GUI:"
+echo "   Command: wireshark"
+echo ""
+echo "2. Capture Filters (applied during live capture):"
+echo "   - Capture traffic for a specific IP: host 192.168.1.1"
+echo "   - Capture traffic on a specific port: port 80"
+echo "   - Capture traffic for a specific protocol: tcp, udp, or icmp"
+echo ""
+echo "3. Display Filters (applied to analyze captured packets):"
+echo "   - Show traffic to a specific IP: ip.dst == 192.168.1.1"
+echo "   - Show traffic from a specific IP: ip.src == 192.168.1.1"
+echo "   - Show HTTP traffic only: http"
+echo "   - Show DNS queries: dns"
+echo ""
+echo "4. Save Captures:"
+echo "   - Use the GUI: File > Save As > Choose file format (.pcap or .pcapng)."
+echo "   - Use tshark (CLI version of Wireshark):"
+echo "     Command: tshark -i <interface> -w output.pcap"
+echo ""
+echo "5. Analyze Captures with tshark:"
+echo "   - Display HTTP requests: tshark -r output.pcap -Y http.request"
+echo "   - Show statistics for protocols: tshark -r output.pcap -q -z io,stat,0"
+echo ""
+
+# ---------------------------
+# Final Message
+# ---------------------------
+echo -e "\n### Wireshark Installation and Setup Complete ###"
+echo "You can now use Wireshark for packet capturing and analysis."
+echo "For non-root capture, log out and log back in for group changes to take effect."
+
+
+
+
+
+
+
+
+n map 
+
+
+#!/bin/bash
+
+# Update the system's package list
+echo "Updating package list..."
+sudo apt update
+
+# ---------------------------
+# Install Nmap (if not already installed)
+# ---------------------------
+echo "Installing Nmap..."
+sudo apt install -y nmap
+
+# ---------------------------
+# Nmap Commands and Usage
+# ---------------------------
+
+echo "Nmap is installed. Below are examples of common Nmap commands for network scanning tasks."
+
+# 1. Basic Host Scanning:
+# Detect active hosts in a subnet.
+# Example: Scan the subnet 192.168.1.0/24
+echo "Host Scanning: Detect active hosts in a subnet."
+echo "Command: nmap -sn 192.168.1.0/24"
+
+# 2. Port Scanning:
+# Scan for open ports on a specific host.
+# Example: Scan all ports on 192.168.1.1
+echo "Port Scanning: Scan for open ports on a specific host."
+echo "Command: nmap 192.168.1.1"
+
+# Scan specific ports (e.g., 22, 80, 443).
+# Example: nmap -p 22,80,443 192.168.1.1
+echo "Scan specific ports (e.g., 22, 80, 443)."
+echo "Command: nmap -p 22,80,443 192.168.1.1"
+
+# Scan all ports on a target:
+# Example: nmap -p- 192.168.1.1
+echo "Scan all 65,535 ports on a target."
+echo "Command: nmap -p- 192.168.1.1"
+
+# 3. OS Detection:
+# Detect the operating system of a host.
+# Example: nmap -O 192.168.1.1
+echo "OS Detection: Detect the operating system of a host."
+echo "Command: nmap -O 192.168.1.1"
+
+# Combine OS and version detection with aggressive scanning:
+# Example: nmap -A 192.168.1.1
+echo "Combine OS and version detection with aggressive scanning."
+echo "Command: nmap -A 192.168.1.1"
+
+# 4. Popular Ports Scanning:
+# Scan the 1,000 most popular ports.
+# Example: nmap --top-ports 1000 192.168.1.1
+echo "Popular Ports Scanning: Scan the 1,000 most popular ports."
+echo "Command: nmap --top-ports 1000 192.168.1.1"
+
+# 5. Service and Version Detection:
+# Identify running services and versions.
+# Example: nmap -sV 192.168.1.1
+echo "Service and Version Detection: Identify running services and their versions."
+echo "Command: nmap -sV 192.168.1.1"
+
+# 6. Scan Multiple Hosts or Subnets:
+# Example: nmap 192.168.1.1 192.168.1.2 or nmap 192.168.1.0/24
+echo "Scan multiple hosts or an entire subnet."
+echo "Command: nmap 192.168.1.1 192.168.1.2 or nmap 192.168.1.0/24"
+
+# 7. Save Scan Results:
+# Save results in a normal format.
+# Example: nmap -oN output.txt 192.168.1.1
+echo "Save Scan Results in a normal format."
+echo "Command: nmap -oN output.txt 192.168.1.1"
+
+# Save results in XML format for automation.
+# Example: nmap -oX output.xml 192.168.1.1
+echo "Save Scan Results in XML format."
+echo "Command: nmap -oX output.xml 192.168.1.1"
+
+# 8. Find the IP Address of a Host:
+# Resolve the IP address of a hostname.
+# Example: nmap -sn example.com
+echo "Find the IP Address of a Host."
+echo "Command: nmap -sn example.com"
+
+# 9. Scan for Specific Protocols:
+# UDP scan (e.g., DNS on port 53):
+# Example: nmap -sU -p 53 192.168.1.1
+echo "UDP Scan: Scan for specific protocols (e.g., DNS on port 53)."
+echo "Command: nmap -sU -p 53 192.168.1.1"
+
+# 10. Scan Stealthily:
+# Example: nmap -sS 192.168.1.1
+echo "Scan stealthily using SYN scan."
+echo "Command: nmap -sS 192.168.1.1"
+
+# 11. Vulnerability Scanning:
+# Example: nmap --script vuln 192.168.1.1
+echo "Scan for known vulnerabilities using Nmap scripts."
+echo "Command: nmap --script vuln 192.168.1.1"
+
+# ---------------------------
+# Completion Message
+# ---------------------------
+echo "Nmap commands and examples are complete. Use these commands as per your requirements for network scanning tasks."
+
+
+
+
+
+
+
+
+#!/bin/bash
+
+# ---------------------------
+# Wireshark Installation and Configuration
+# ---------------------------
+echo "Updating package list..."
+sudo apt update
+
+echo "Installing Wireshark..."
+sudo apt install -y wireshark
+
+echo "Configuring Wireshark for non-root users..."
+sudo dpkg-reconfigure wireshark-common
+sudo usermod -aG wireshark $USER
+
+# ---------------------------
+# Install nmap for Scanning
+# ---------------------------
+echo "Installing nmap (Network Mapper)..."
+sudo apt install -y nmap
+
+# ---------------------------
+# Usage Instructions for Network Scanning
+# ---------------------------
+echo -e "\n### Network Scanning Commands ###"
+
+# 1. Host Scanning
+echo "1. Host Scanning:"
+echo "   - Scan a specific subnet to identify active hosts:"
+echo "     nmap -sn 192.168.1.0/24"
+echo ""
+
+# 2. Port Scanning
+echo "2. Port Scanning:"
+echo "   - Scan for open ports on a specific host:"
+echo "     nmap -p 1-65535 192.168.1.1"
+echo ""
+echo "   - Scan for common ports on a host:"
+echo "     nmap 192.168.1.1"
+echo ""
+
+# 3. OS Scanning
+echo "3. OS Scanning:"
+echo "   - Detect the operating system of a target:"
+echo "     nmap -O 192.168.1.1"
+echo ""
+
+# 4. Popular Ports
+echo "4. Popular Ports Scanning:"
+echo "   - Scan for popular services (e.g., HTTP, FTP, SSH):"
+echo "     nmap --top-ports 20 192.168.1.1"
+echo ""
+
+# 5. Finding Open Ports
+echo "5. Finding Open Ports:"
+echo "   - Scan and display open ports only:"
+echo "     nmap --open 192.168.1.1"
+echo ""
+
+# 6. Get IP Information
+echo "6. Get Your IP Information:"
+echo "   - Display local IP address:"
+echo "     ip addr show"
+echo ""
+echo "   - Display public IP address:"
+echo "     curl ifconfig.me"
+echo ""
+
+# ---------------------------
+# Wireshark Commands and Usages
+# ---------------------------
+echo -e "\n### Wireshark Commands and Usages ###"
+echo "1. Start Wireshark GUI:"
+echo "   Command: wireshark"
+echo ""
+echo "2. Capture Filters:"
+echo "   - Capture traffic for a specific IP: host 192.168.1.1"
+echo "   - Capture traffic on a specific port: port 80"
+echo "   - Capture traffic for a specific protocol: tcp, udp, or icmp"
+echo ""
+echo "3. Display Filters:"
+echo "   - Show traffic to a specific IP: ip.dst == 192.168.1.1"
+echo "   - Show HTTP traffic only: http"
+echo "   - Show DNS queries: dns"
+echo ""
+echo "4. Save Captures:"
+echo "   - Use tshark (CLI version):"
+echo "     tshark -i <interface> -w output.pcap"
+echo ""
+
+# ---------------------------
+# Final Message
+# ---------------------------
+echo -e "\n### Installation and Setup Complete ###"
+echo "Log out and log back in to enable non-root Wireshark capture."
+echo "Use Wireshark and nmap for advanced network analysis."
