@@ -9,7 +9,7 @@ void broadcastTree(int graph[v][v])
 
     selected[0] = 1;
 
-    for(int x=0;x<v-1;x++)
+    for(int cnt=0;cnt<v-1;cnt++)
     {
         int min = INF,x=0,y=0;
 
